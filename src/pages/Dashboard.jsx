@@ -6,9 +6,11 @@ import TaskBoard from '../components/TaskBoard';
 import TaskModal from '../components/TaskModal';
 import DashboardStats from '../components/DashboardStats';
 import { supabase } from '../services/api';
+import toast from 'react-hot-toast';
 import './Dashboard.css';
 
 const Dashboard = () => {
+  // ... (previous state)
   const { user } = useAuth();
   const [tasks, setTasks] = useState([]);
   const [users, setUsers] = useState([]);
@@ -32,8 +34,6 @@ const Dashboard = () => {
     try {
       const { data, error } = await supabase.from('users').select('*');
       if (error) throw error;
-      
-      // map username to name for frontend compatibility
       const mappedUsers = data.map(u => ({ ...u, name: u.username }));
       setUsers(mappedUsers || []);
     } catch (error) {
@@ -71,17 +71,17 @@ const Dashboard = () => {
 
       if (data && data[0]) {
         setTasks([...tasks, data[0]]);
+        toast.success('Vazifa muvaffaqiyatli yaratildi!');
       }
       setIsModalOpen(false);
     } catch (error) {
+      toast.error('Vazifa yaratishda xatolik yuz berdi');
       console.error("Failed to create task", error);
     }
   };
 
   const handleUpdateTask = async (taskId, updatedData) => {
     const id = typeof taskId === 'string' ? Number(taskId) : taskId;
-    
-    // Process updatedData to handle assigneeId correctly
     const finalUpdateData = { ...updatedData };
     if ('assigneeId' in finalUpdateData) {
       finalUpdateData.assigneeId = finalUpdateData.assigneeId ? parseInt(finalUpdateData.assigneeId) : null;
@@ -98,20 +98,26 @@ const Dashboard = () => {
 
       if (data && data[0]) {
         setTasks(prevTasks => prevTasks.map(t => t.id === id ? data[0] : t));
+        toast.success('Vazifa yangilandi!');
       }
       if (isModalOpen) setIsModalOpen(false);
     } catch (error) {
+      toast.error('Vazifani yangilashda xatolik yuz berdi');
       console.error("Failed to update task", error);
     }
   };
 
   const handleDeleteTask = async (taskId) => {
+    if (!window.confirm('Vazifani o\'chirishga ishonchingiz komilmi?')) return;
+    
     try {
       const { error } = await supabase.from('tasks').delete().eq('id', taskId);
       if (error) throw error;
       
       setTasks(tasks.filter(t => t.id !== taskId));
+      toast.success('Vazifa o\'chirildi');
     } catch (error) {
+      toast.error('Vazifani o\'chirishda xatolik yuz berdi');
       console.error("Failed to delete task", error);
     }
   };

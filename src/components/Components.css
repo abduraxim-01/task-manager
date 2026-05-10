@@ -123,8 +123,8 @@
   background-color: rgba(26, 31, 46, 0.5);
   border-radius: 12px;
   border: 1px solid var(--border-color);
-  height: 420px; /* Adjusted to show ~1.5 cards */
-  max-height: 70vh;
+  height: 500px; /* Fixed height for consistency */
+  max-height: 80vh;
   display: flex;
   flex-direction: column;
   transition: all 0.2s ease;

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { LogIn, UserPlus } from 'lucide-react';
+import toast from 'react-hot-toast';
 import './Auth.css';
 
 const AuthPage = () => {
@@ -28,12 +29,19 @@ const AuthPage = () => {
     let result;
     if (isLogin) {
       result = await login(formData.email, formData.password);
+      if (result.success) {
+        toast.success('Xush kelibsiz!');
+      }
     } else {
       result = await register(formData.name, formData.email, formData.password);
+      if (result.success) {
+        toast.success('Ro\'yxatdan o\'tish muvaffaqiyatli yakunlandi!');
+      }
     }
 
     if (!result.success) {
       setError(result.message);
+      toast.error(result.message);
     }
     setIsLoading(false);
   };

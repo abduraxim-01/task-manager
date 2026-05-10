@@ -26,6 +26,8 @@ const PublicRoute = ({ children }) => {
   return children;
 };
 
+import { Toaster } from 'react-hot-toast';
+
 function App() {
   useEffect(() => {
     AOS.init({
@@ -39,6 +41,7 @@ function App() {
     <ThemeProvider>
       <AuthProvider>
         <Router>
+          <Toaster position="top-center" reverseOrder={false} />
           <Routes>
             <Route 
               path="/auth" 
