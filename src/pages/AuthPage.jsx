@@ -40,7 +40,7 @@ const AuthPage = () => {
 
   return (
     <div className="auth-container">
-      <div className="auth-card">
+      <div className="auth-card" data-aos="zoom-in">
         <div className="auth-header">
           <h2>{isLogin ? 'Welcome Back' : 'Create an Account'}</h2>
           <p>{isLogin ? 'Sign in to manage your tasks' : 'Sign up to start organizing'}</p>

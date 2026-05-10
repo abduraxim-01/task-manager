@@ -2,13 +2,14 @@ import { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import './Modal.css';
 
-const TaskModal = ({ task, onClose, onSave }) => {
+const TaskModal = ({ task, users = [], onClose, onSave }) => {
   const [formData, setFormData] = useState({
     title: '',
     description: '',
     status: 'To Do',
     priority: 'Medium',
-    deadline: ''
+    deadline: '',
+    assigneeId: ''
   });
 
   useEffect(() => {
@@ -18,7 +19,8 @@ const TaskModal = ({ task, onClose, onSave }) => {
         description: task.description || '',
         status: task.status || 'To Do',
         priority: task.priority || 'Medium',
-        deadline: task.deadline || ''
+        deadline: task.deadline || '',
+        assigneeId: task.assigneeId || ''
       });
     }
   }, [task]);
@@ -86,14 +88,26 @@ const TaskModal = ({ task, onClose, onSave }) => {
             </div>
           </div>
 
-          <div className="form-group">
-            <label>Deadline</label>
-            <input 
-              type="date" 
-              name="deadline" 
-              value={formData.deadline} 
-              onChange={handleChange} 
-            />
+          <div className="form-row">
+            <div className="form-group">
+              <label>Deadline</label>
+              <input 
+                type="date" 
+                name="deadline" 
+                value={formData.deadline} 
+                onChange={handleChange} 
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Assign To</label>
+              <select name="assigneeId" value={formData.assigneeId} onChange={handleChange}>
+                <option value="">Unassigned</option>
+                {users.map(u => (
+                  <option key={u.id} value={u.id}>{u.name}</option>
+                ))}
+              </select>
+            </div>
           </div>
 
           <div className="modal-footer">

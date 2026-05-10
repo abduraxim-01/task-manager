@@ -1,9 +1,20 @@
-import { Plus, Filter } from 'lucide-react';
+import { Plus, Filter, Search } from 'lucide-react';
 
-const FilterBar = ({ filters, setFilters, onNewTask }) => {
+const FilterBar = ({ filters, setFilters, searchQuery, setSearchQuery, onNewTask }) => {
   return (
     <div className="filter-bar">
       <div className="filter-group">
+        <div className="filter-item search-item">
+          <Search size={16} />
+          <input 
+            type="text" 
+            placeholder="Search tasks..." 
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="search-input"
+          />
+        </div>
+
         <div className="filter-item">
           <Filter size={16} />
           <select 

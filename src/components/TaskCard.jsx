@@ -1,17 +1,7 @@
-import { Edit2, Trash2, Calendar, Clock, ChevronRight, ChevronLeft } from 'lucide-react';
+import { Edit2, Trash2, Calendar, Clock, User } from 'lucide-react';
 
-const TaskCard = ({ task, onEditTask, onDeleteTask, onUpdateTaskStatus }) => {
+const TaskCard = ({ task, users = [], onEditTask, onDeleteTask, onUpdateTaskStatus }) => {
   const isOverdue = task.deadline && new Date(task.deadline) < new Date();
-  
-  const handleStatusChange = (direction) => {
-    const statuses = ['To Do', 'In Progress', 'Done'];
-    const currentIndex = statuses.indexOf(task.status);
-    if (direction === 'next' && currentIndex < statuses.length - 1) {
-      onUpdateTaskStatus(statuses[currentIndex + 1]);
-    } else if (direction === 'prev' && currentIndex > 0) {
-      onUpdateTaskStatus(statuses[currentIndex - 1]);
-    }
-  };
 
   const formatDate = (dateString) => {
     if (!dateString) return '';
@@ -19,8 +9,19 @@ const TaskCard = ({ task, onEditTask, onDeleteTask, onUpdateTaskStatus }) => {
     return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
   };
 
+  const handleDragStart = (e) => {
+    e.dataTransfer.setData('taskId', task.id);
+  };
+
+  const assignee = users.find(u => u.id === task.assigneeId);
+
   return (
-    <div className={`task-card priority-${task.priority.toLowerCase()}`}>
+    <div 
+      className={`task-card priority-${task.priority.toLowerCase()}`}
+      draggable="true"
+      onDragStart={handleDragStart}
+      data-aos="fade-up"
+    >
       <div className="task-card-header">
         <span className="priority-badge">{task.priority}</span>
         <div className="task-actions">
@@ -36,33 +37,34 @@ const TaskCard = ({ task, onEditTask, onDeleteTask, onUpdateTaskStatus }) => {
       <h3 className="task-title">{task.title}</h3>
       <p className="task-desc">{task.description}</p>
       
-      {task.deadline && (
-        <div className={`task-deadline ${isOverdue && task.status !== 'Done' ? 'overdue' : ''}`}>
-          <Calendar size={12} />
-          <span>{formatDate(task.deadline)}</span>
-        </div>
-      )}
+      <div className="task-meta">
+        {task.deadline && (
+          <div className={`task-deadline ${isOverdue && task.status !== 'Done' ? 'overdue' : ''}`}>
+            <Calendar size={12} />
+            <span>{formatDate(task.deadline)}</span>
+          </div>
+        )}
+        {assignee && (
+          <div className="task-assignee" title={`Assigned to ${assignee.name}`}>
+            <User size={12} />
+            <span>{assignee.name}</span>
+          </div>
+        )}
+      </div>
       
       <div className="task-status-controls">
-        <button 
-          className="move-btn" 
-          onClick={() => handleStatusChange('prev')}
-          disabled={task.status === 'To Do'}
-          title="Move Back"
-        >
-          <ChevronLeft size={16} />
-        </button>
         <div className="status-label">
-          <Clock size={12} /> {task.status}
+          <Clock size={12} /> Status
         </div>
-        <button 
-          className="move-btn" 
-          onClick={() => handleStatusChange('next')}
-          disabled={task.status === 'Done'}
-          title="Move Forward"
+        <select 
+          className="status-select" 
+          value={task.status} 
+          onChange={(e) => onUpdateTaskStatus(e.target.value)}
         >
-          <ChevronRight size={16} />
-        </button>
+          <option value="To Do">To Do</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Done">Done</option>
+        </select>
       </div>
     </div>
   );

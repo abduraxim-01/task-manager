@@ -17,17 +17,50 @@
       "email": "demo@example.com",
       "password": "password123",
       "id": "l12_NTeKWb8"
+    },
+    {
+      "name": "Abduraxim",
+      "email": "abduraxim46@gmail.com",
+      "password": "Mansurov",
+      "id": "vHKpWLkXLuw"
     }
   ],
   "tasks": [
     {
-      "title": "My First Task",
-      "description": "This is a test task",
+      "title": "darsga kir",
+      "description": "Islom shaxobiddinov 15:00 DARSIGA",
+      "status": "Done",
+      "priority": "Low",
+      "deadline": "2026-05-10",
+      "userId": "l12_NTeKWb8",
+      "id": "RVqTMx5BcXI"
+    },
+    {
+      "title": "qazi",
+      "description": "qazi yema",
       "status": "In Progress",
       "priority": "High",
-      "deadline": "",
-      "userId": "l12_NTeKWb8",
-      "id": "8xwKxdMPrio"
+      "deadline": "2026-05-10",
+      "userId": "vHKpWLkXLuw",
+      "id": "cFXcsz_gCbs"
+    },
+    {
+      "title": "qazi yema",
+      "description": "qazi yema",
+      "status": "In Progress",
+      "priority": "Low",
+      "deadline": "2026-05-10",
+      "userId": "vHKpWLkXLuw",
+      "id": "hr7x_6MDWhQ"
+    },
+    {
+      "title": "dewdw",
+      "description": "ewdww",
+      "status": "Done",
+      "priority": "Medium",
+      "deadline": "2026-05-10",
+      "userId": "vHKpWLkXLuw",
+      "id": "fZWljYGpyb8"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
