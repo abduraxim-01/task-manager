@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
+import { Toaster } from 'react-hot-toast';
 import AuthPage from './pages/AuthPage';
 import Dashboard from './pages/Dashboard';
 import AOS from 'aos';
@@ -25,8 +26,6 @@ const PublicRoute = ({ children }) => {
   
   return children;
 };
-
-import { Toaster } from 'react-hot-toast';
 
 function App() {
   useEffect(() => {
