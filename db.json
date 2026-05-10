@@ -1,0 +1,34 @@
+{
+  "users": [
+    {
+      "name": "Abduraxim",
+      "email": "abduraxim746@gmail.com",
+      "password": "MAnsurov20911",
+      "id": "hIYiA2UyrH8"
+    },
+    {
+      "name": "Abduraxim",
+      "email": "abduraxim146@gmail.com",
+      "password": "Mansurov2011",
+      "id": "8OozNc3bPHo"
+    },
+    {
+      "name": "Demo User",
+      "email": "demo@example.com",
+      "password": "password123",
+      "id": "l12_NTeKWb8"
+    }
+  ],
+  "tasks": [
+    {
+      "title": "My First Task",
+      "description": "This is a test task",
+      "status": "In Progress",
+      "priority": "High",
+      "deadline": "",
+      "userId": "l12_NTeKWb8",
+      "id": "8xwKxdMPrio"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
