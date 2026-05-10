@@ -27,7 +27,6 @@ const DashboardStats = ({ tasks }) => {
     value: statusCounts[key]
   }));
 
-  // Calculate priority data
   const priorityCounts = tasks.reduce((acc, task) => {
     acc[task.priority] = (acc[task.priority] || 0) + 1;
     return acc;
@@ -40,6 +39,7 @@ const DashboardStats = ({ tasks }) => {
 
   return (
     <div className="dashboard-stats" data-aos="fade-up">
+
       <div className="stat-card">
         <h3>Status bo'yicha vazifalar</h3>
         <div className="chart-container">

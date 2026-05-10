@@ -80,13 +80,17 @@ const Dashboard = () => {
 
   const handleUpdateTask = async (taskId, updatedData) => {
     const id = typeof taskId === 'string' ? Number(taskId) : taskId;
+    
+    // Process updatedData to handle assigneeId correctly
+    const finalUpdateData = { ...updatedData };
+    if ('assigneeId' in finalUpdateData) {
+      finalUpdateData.assigneeId = finalUpdateData.assigneeId ? parseInt(finalUpdateData.assigneeId) : null;
+    }
+
     try {
       const { data, error } = await supabase
         .from('tasks')
-        .update({
-          ...updatedData,
-          assigneeId: updatedData.assigneeId ? parseInt(updatedData.assigneeId) : null
-        })
+        .update(finalUpdateData)
         .eq('id', id)
         .select();
 
@@ -135,8 +139,6 @@ const Dashboard = () => {
           <p>Jamoa loyihalarini boshqaring va samarali bo'ling.</p>
         </div>
 
-        <DashboardStats tasks={tasks} />
-
         <FilterBar 
           filters={filters} 
           setFilters={setFilters} 
@@ -154,6 +156,7 @@ const Dashboard = () => {
           <TaskBoard 
             tasks={filteredTasks} 
             users={users}
+            currentUserId={user?.id}
             onEditTask={(task) => {
               setEditingTask(task);
               setIsModalOpen(true);
@@ -162,6 +165,9 @@ const Dashboard = () => {
             onUpdateTaskStatus={(taskId, newStatus) => handleUpdateTask(taskId, { status: newStatus })}
           />
         )}
+        <br />
+        <DashboardStats tasks={tasks} />
+
       </main>
 
       {isModalOpen && (
@@ -173,6 +179,7 @@ const Dashboard = () => {
         />
       )}
     </div>
+
   );
 };
 

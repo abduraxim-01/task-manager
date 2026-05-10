@@ -123,7 +123,8 @@
   background-color: rgba(26, 31, 46, 0.5);
   border-radius: 12px;
   border: 1px solid var(--border-color);
-  min-height: 500px;
+  height: 420px; /* Adjusted to show ~1.5 cards */
+  max-height: 70vh;
   display: flex;
   flex-direction: column;
   transition: all 0.2s ease;
@@ -169,6 +170,53 @@
   color: var(--text-muted);
 }
 
+.column-body-wrapper {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.scroll-arrow {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: linear-gradient(to bottom, var(--surface-color), rgba(26, 31, 46, 0));
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+  color: var(--primary-color);
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+[data-theme="light"] .scroll-arrow {
+  background: linear-gradient(to bottom, white, rgba(255, 255, 255, 0));
+}
+
+.scroll-arrow.up {
+  top: 0;
+}
+
+.scroll-arrow.down {
+  bottom: 0;
+  background: linear-gradient(to top, var(--surface-color), rgba(26, 31, 46, 0));
+}
+
+[data-theme="light"] .scroll-arrow.down {
+  background: linear-gradient(to top, white, rgba(255, 255, 255, 0));
+}
+
+.scroll-arrow:hover {
+  color: var(--primary-color-light);
+  transform: scale(1.1);
+}
+
 .column-content {
   padding: 1rem;
   flex: 1;
@@ -176,6 +224,11 @@
   flex-direction: column;
   gap: 1rem;
   overflow-y: auto;
+  scrollbar-width: none; /* Hide standard scrollbar */
+}
+
+.column-content::-webkit-scrollbar {
+  display: none; /* Hide standard scrollbar */
 }
 
 .empty-column {
@@ -206,6 +259,11 @@
 .task-card.priority-low { border-top-color: var(--priority-low); }
 .task-card.priority-medium { border-top-color: var(--priority-medium); }
 .task-card.priority-high { border-top-color: var(--priority-high); }
+
+/* Status specific overrides */
+.task-card.status-done {
+  border-top-color: var(--status-done) !important;
+}
 
 .task-card-header {
   display: flex;
@@ -500,5 +558,17 @@
   background-color: var(--surface-color-light);
   padding: 0.2rem 0.5rem;
   border-radius: 12px;
+}
+
+.task-creation-time {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px dashed var(--border-color);
+  margin-bottom: 0.75rem;
 }
 

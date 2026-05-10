@@ -1,12 +1,19 @@
 import { Edit2, Trash2, Calendar, Clock, User } from 'lucide-react';
 
-const TaskCard = ({ task, users = [], onEditTask, onDeleteTask, onUpdateTaskStatus }) => {
+const TaskCard = ({ task, users = [], onEditTask, onDeleteTask, onUpdateTaskStatus, currentUserId }) => {
   const isOverdue = task.deadline && new Date(task.deadline) < new Date();
+  const isCreator = currentUserId === task.userId;
 
-  const formatDate = (dateString) => {
+  const formatDate = (dateString, showTime = false) => {
     if (!dateString) return '';
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    const options = { 
+      day: 'numeric', 
+      month: 'short', 
+      year: 'numeric',
+      ...(showTime && { hour: '2-digit', minute: '2-digit' })
+    };
+    return date.toLocaleDateString('uz-UZ', options);
   };
 
   const handleDragStart = (e) => {
@@ -17,20 +24,22 @@ const TaskCard = ({ task, users = [], onEditTask, onDeleteTask, onUpdateTaskStat
 
   return (
     <div 
-      className={`task-card priority-${task.priority.toLowerCase()}`}
+      className={`task-card priority-${task.priority.toLowerCase()} status-${task.status.replace(/\s+/g, '-').toLowerCase()}`}
       draggable="true"
       onDragStart={handleDragStart}
     >
       <div className="task-card-header">
         <span className="priority-badge">{task.priority}</span>
-        <div className="task-actions">
-          <button onClick={onEditTask} className="icon-btn edit" title="Vazifani tahrirlash">
-            <Edit2 size={14} />
-          </button>
-          <button onClick={onDeleteTask} className="icon-btn delete" title="Vazifani o'chirish">
-            <Trash2 size={14} />
-          </button>
-        </div>
+        {isCreator && (
+          <div className="task-actions">
+            <button onClick={onEditTask} className="icon-btn edit" title="Vazifani tahrirlash">
+              <Edit2 size={14} />
+            </button>
+            <button onClick={onDeleteTask} className="icon-btn delete" title="Vazifani o'chirish">
+              <Trash2 size={14} />
+            </button>
+          </div>
+        )}
       </div>
       
       <h3 className="task-title">{task.title}</h3>
@@ -49,6 +58,11 @@ const TaskCard = ({ task, users = [], onEditTask, onDeleteTask, onUpdateTaskStat
             <span>{assignee.name}</span>
           </div>
         )}
+      </div>
+
+      <div className="task-creation-time">
+        <Clock size={10} />
+        <span>Yaratildi: {formatDate(task.created_at, true)}</span>
       </div>
       
       <div className="task-status-controls">
