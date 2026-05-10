@@ -143,3 +143,9 @@ input:focus, textarea:focus, select:focus {
   font-size: 1.2rem;
   color: var(--text-muted);
 }
+@media (max-width: 480px) {
+  .primary-btn, .secondary-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+}

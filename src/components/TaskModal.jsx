@@ -38,7 +38,7 @@ const TaskModal = ({ task, users = [], onClose, onSave }) => {
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
-          <h2>{task ? 'Edit Task' : 'Create New Task'}</h2>
+          <h2>{task ? 'Vazifani tahrirlash' : 'Yangi vazifa yaratish'}</h2>
           <button className="close-btn" onClick={onClose}>
             <X size={20} />
           </button>
@@ -46,31 +46,31 @@ const TaskModal = ({ task, users = [], onClose, onSave }) => {
 
         <form onSubmit={handleSubmit} className="modal-form">
           <div className="form-group">
-            <label>Title</label>
+            <label>Sarlavha</label>
             <input 
               type="text" 
               name="title" 
               value={formData.title} 
               onChange={handleChange} 
-              placeholder="e.g. Design Landing Page"
+              placeholder="Masalan: Sayt dizaynini chizish"
               required 
             />
           </div>
 
           <div className="form-group">
-            <label>Description</label>
+            <label>Tavsif</label>
             <textarea 
               name="description" 
               value={formData.description} 
               onChange={handleChange} 
               rows={3}
-              placeholder="Add details about this task..."
+              placeholder="Vazifa haqida batafsil..."
             ></textarea>
           </div>
 
           <div className="form-row">
             <div className="form-group">
-              <label>Status</label>
+              <label>Holat</label>
               <select name="status" value={formData.status} onChange={handleChange}>
                 <option value="To Do">To Do</option>
                 <option value="In Progress">In Progress</option>
@@ -79,18 +79,18 @@ const TaskModal = ({ task, users = [], onClose, onSave }) => {
             </div>
             
             <div className="form-group">
-              <label>Priority</label>
+              <label>Ustuvorlik</label>
               <select name="priority" value={formData.priority} onChange={handleChange}>
-                <option value="Low">Low</option>
-                <option value="Medium">Medium</option>
-                <option value="High">High</option>
+                <option value="Low">Past</option>
+                <option value="Medium">O'rta</option>
+                <option value="High">Yuqori</option>
               </select>
             </div>
           </div>
 
           <div className="form-row">
             <div className="form-group">
-              <label>Deadline</label>
+              <label>Muddati</label>
               <input 
                 type="date" 
                 name="deadline" 
@@ -100,9 +100,9 @@ const TaskModal = ({ task, users = [], onClose, onSave }) => {
             </div>
 
             <div className="form-group">
-              <label>Assign To</label>
+              <label>Kimga biriktirish</label>
               <select name="assigneeId" value={formData.assigneeId} onChange={handleChange}>
-                <option value="">Unassigned</option>
+                <option value="">Hech kimga</option>
                 {users.map(u => (
                   <option key={u.id} value={u.id}>{u.name}</option>
                 ))}
@@ -111,8 +111,8 @@ const TaskModal = ({ task, users = [], onClose, onSave }) => {
           </div>
 
           <div className="modal-footer">
-            <button type="button" className="secondary-btn" onClick={onClose}>Cancel</button>
-            <button type="submit" className="primary-btn">{task ? 'Save Changes' : 'Create Task'}</button>
+            <button type="button" className="secondary-btn" onClick={onClose}>Bekor qilish</button>
+            <button type="submit" className="primary-btn">{task ? 'Saqlash' : 'Vazifa yaratish'}</button>
           </div>
         </form>
       </div>

@@ -41,7 +41,7 @@ const DashboardStats = ({ tasks }) => {
   return (
     <div className="dashboard-stats" data-aos="fade-up">
       <div className="stat-card">
-        <h3>Tasks by Status</h3>
+        <h3>Status bo'yicha vazifalar</h3>
         <div className="chart-container">
           <ResponsiveContainer width="100%" height={200}>
             <PieChart>
@@ -73,7 +73,7 @@ const DashboardStats = ({ tasks }) => {
       </div>
 
       <div className="stat-card">
-        <h3>Tasks by Priority</h3>
+        <h3>Ustuvorlik bo'yicha vazifalar</h3>
         <div className="chart-container">
           <ResponsiveContainer width="100%" height={200}>
             <BarChart data={priorityData} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>

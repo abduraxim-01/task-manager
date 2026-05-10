@@ -8,7 +8,7 @@ const FilterBar = ({ filters, setFilters, searchQuery, setSearchQuery, onNewTask
           <Search size={16} />
           <input 
             type="text" 
-            placeholder="Search tasks..." 
+            placeholder="Vazifalarni qidirish..." 
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="search-input"
@@ -21,7 +21,7 @@ const FilterBar = ({ filters, setFilters, searchQuery, setSearchQuery, onNewTask
             value={filters.status} 
             onChange={(e) => setFilters({...filters, status: e.target.value})}
           >
-            <option value="All">All Status</option>
+            <option value="All">Barcha holatlar</option>
             <option value="To Do">To Do</option>
             <option value="In Progress">In Progress</option>
             <option value="Done">Done</option>
@@ -33,16 +33,16 @@ const FilterBar = ({ filters, setFilters, searchQuery, setSearchQuery, onNewTask
             value={filters.priority} 
             onChange={(e) => setFilters({...filters, priority: e.target.value})}
           >
-            <option value="All">All Priorities</option>
-            <option value="Low">Low Priority</option>
-            <option value="Medium">Medium Priority</option>
-            <option value="High">High Priority</option>
+            <option value="All">Barcha ustuvorliklar</option>
+            <option value="Low">Past</option>
+            <option value="Medium">O'rta</option>
+            <option value="High">Yuqori</option>
           </select>
         </div>
       </div>
       
       <button className="primary-btn" onClick={onNewTask}>
-        <Plus size={18} /> New Task
+        <Plus size={18} /> Yangi vazifa
       </button>
     </div>
   );

@@ -42,8 +42,8 @@ const AuthPage = () => {
     <div className="auth-container">
       <div className="auth-card" data-aos="zoom-in">
         <div className="auth-header">
-          <h2>{isLogin ? 'Welcome Back' : 'Create an Account'}</h2>
-          <p>{isLogin ? 'Sign in to manage your tasks' : 'Sign up to start organizing'}</p>
+          <h2>{isLogin ? 'Xush kelibsiz' : 'Hisob yaratish'}</h2>
+          <p>{isLogin ? 'Vazifalaringizni boshqarish uchun tizimga kiring' : 'Vazifalarni tartibga solishni boshlash uchun ro\'yxatdan o\'ting'}</p>
         </div>
 
         {error && <div className="auth-error">{error}</div>}
@@ -51,32 +51,32 @@ const AuthPage = () => {
         <form onSubmit={handleSubmit} className="auth-form">
           {!isLogin && (
             <div className="form-group">
-              <label>Full Name</label>
+              <label>To'liq ism</label>
               <input
                 type="text"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                placeholder="John Doe"
+                placeholder="Ali Valiyev"
                 required={!isLogin}
               />
             </div>
           )}
           
           <div className="form-group">
-            <label>Email Address</label>
+            <label>Email manzil</label>
             <input
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="you@example.com"
+              placeholder="siz@example.com"
               required
             />
           </div>
 
           <div className="form-group">
-            <label>Password</label>
+            <label>Parol</label>
             <input
               type="password"
               name="password"
@@ -88,17 +88,17 @@ const AuthPage = () => {
           </div>
 
           <button type="submit" className="auth-btn" disabled={isLoading}>
-            {isLoading ? 'Processing...' : (isLogin ? (
-              <><LogIn size={18} /> Sign In</>
+            {isLoading ? 'Jarayonda...' : (isLogin ? (
+              <><LogIn size={18} /> Kirish</>
             ) : (
-              <><UserPlus size={18} /> Sign Up</>
+              <><UserPlus size={18} /> Ro'yxatdan o'tish</>
             ))}
           </button>
         </form>
 
         <div className="auth-footer">
           <p>
-            {isLogin ? "Don't have an account? " : "Already have an account? "}
+            {isLogin ? "Hisobingiz yo'qmi? " : "Hisobingiz bormi? "}
             <button 
               type="button" 
               className="toggle-btn"
@@ -107,7 +107,7 @@ const AuthPage = () => {
                 setError('');
               }}
             >
-              {isLogin ? 'Sign Up' : 'Sign In'}
+              {isLogin ? 'Ro\'yxatdan o\'tish' : 'Kirish'}
             </button>
           </p>
         </div>

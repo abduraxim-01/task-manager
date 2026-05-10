@@ -62,15 +62,15 @@ const Navigation = ({ tasks = [] }) => {
           
           {showNotifications && (
             <div className="notification-dropdown">
-              <h4>Deadline Notifications</h4>
+              <h4>Muddat haqida ogohlantirishlar</h4>
               {notifications.length === 0 ? (
-                <div className="notification-empty">No approaching deadlines</div>
+                <div className="notification-empty">Yaqinlashayotgan muddatlar yo'q</div>
               ) : (
                 <div className="notification-list">
                   {notifications.map(task => (
                     <div key={task.id} className="notification-item">
                       <div className="notification-title">{task.title}</div>
-                      <div className="notification-date">Due: {new Date(task.deadline).toLocaleDateString()}</div>
+                      <div className="notification-date">Muddati: {new Date(task.deadline).toLocaleDateString()}</div>
                     </div>
                   ))}
                 </div>
@@ -79,12 +79,12 @@ const Navigation = ({ tasks = [] }) => {
           )}
         </div>
 
-        <button onClick={toggleTheme} className="theme-toggle" title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}>
+        <button onClick={toggleTheme} className="theme-toggle" title={`${theme === 'dark' ? 'Yorug' : 'Tungi'} rejimga o'tish`}>
           {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
         </button>
         <div className="avatar">{user?.username?.charAt(0).toUpperCase()}</div>
         <span className="user-name">{user?.username}</span>
-        <button onClick={logout} className="logout-btn" title="Logout">
+        <button onClick={logout} className="logout-btn" title="Chiqish">
           <LogOut size={18} />
         </button>
       </div>

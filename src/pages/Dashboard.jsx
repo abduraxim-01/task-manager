@@ -79,6 +79,7 @@ const Dashboard = () => {
   };
 
   const handleUpdateTask = async (taskId, updatedData) => {
+    const id = typeof taskId === 'string' ? Number(taskId) : taskId;
     try {
       const { data, error } = await supabase
         .from('tasks')
@@ -86,13 +87,13 @@ const Dashboard = () => {
           ...updatedData,
           assigneeId: updatedData.assigneeId ? parseInt(updatedData.assigneeId) : null
         })
-        .eq('id', taskId)
+        .eq('id', id)
         .select();
 
       if (error) throw error;
 
       if (data && data[0]) {
-        setTasks(tasks.map(t => t.id === taskId ? data[0] : t));
+        setTasks(prevTasks => prevTasks.map(t => t.id === id ? data[0] : t));
       }
       if (isModalOpen) setIsModalOpen(false);
     } catch (error) {
@@ -130,8 +131,8 @@ const Dashboard = () => {
       <Navigation tasks={tasks} />
       <main className="dashboard-content" data-aos="fade-in">
         <div className="dashboard-header" data-aos="fade-right">
-          <h2>Welcome, {user?.name || user?.username || 'User'}!</h2>
-          <p>Manage your team projects and stay productive.</p>
+          <h2>Xush kelibsiz, {user?.name || user?.username || 'Foydalanuvchi'}!</h2>
+          <p>Jamoa loyihalarini boshqaring va samarali bo'ling.</p>
         </div>
 
         <DashboardStats tasks={tasks} />
@@ -148,7 +149,7 @@ const Dashboard = () => {
         />
         
         {isLoading ? (
-          <div className="loading-state">Loading tasks...</div>
+          <div className="loading-state">Vazifalar yuklanmoqda...</div>
         ) : (
           <TaskBoard 
             tasks={filteredTasks} 

@@ -28,8 +28,6 @@ const TaskColumn = ({ status, tasks, users, onEditTask, onDeleteTask, onUpdateTa
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
-      data-aos="fade-up"
-      data-aos-delay={index * 100}
     >
       <div className="column-header">
         <div className={`status-indicator status-${status.replace(/\s+/g, '-').toLowerCase()}`}></div>
@@ -48,7 +46,7 @@ const TaskColumn = ({ status, tasks, users, onEditTask, onDeleteTask, onUpdateTa
           />
         ))}
         {tasks.length === 0 && (
-          <div className="empty-column">No tasks in this column</div>
+          <div className="empty-column">Bu ustunda vazifalar yo'q</div>
         )}
       </div>
     </div>

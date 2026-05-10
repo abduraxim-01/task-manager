@@ -316,14 +316,23 @@
   border-color: var(--primary-color);
 }
 
-/* Responsive */
+/* Responsive Improvements */
 @media (max-width: 1024px) {
   .task-board {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   }
 }
 
 @media (max-width: 768px) {
+  .navbar {
+    padding: 0.75rem 1rem;
+  }
+  
+  .nav-brand h1 {
+    font-size: 1.1rem;
+  }
+  
   .task-board {
     grid-template-columns: 1fr;
   }
@@ -331,14 +340,58 @@
   .filter-bar {
     flex-direction: column;
     align-items: stretch;
+    gap: 1rem;
   }
   
   .filter-group {
     flex-direction: column;
+    width: 100%;
   }
   
+  .filter-item {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .search-input {
+    flex: 1;
+    width: 100%;
+  }
+  
+  .primary-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
   .task-actions {
-    opacity: 1; /* Always show actions on mobile */
+    opacity: 1;
+  }
+  
+  .notification-dropdown {
+    position: fixed;
+    top: 60px;
+    left: 1rem;
+    right: 1rem;
+    width: auto;
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .user-name {
+    display: none;
+  }
+  
+  .navbar {
+    gap: 0.5rem;
+  }
+  
+  .column-header {
+    padding: 1rem;
+  }
+  
+  .task-card {
+    padding: 1rem;
   }
 }
 

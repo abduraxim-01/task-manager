@@ -20,15 +20,14 @@ const TaskCard = ({ task, users = [], onEditTask, onDeleteTask, onUpdateTaskStat
       className={`task-card priority-${task.priority.toLowerCase()}`}
       draggable="true"
       onDragStart={handleDragStart}
-      data-aos="fade-up"
     >
       <div className="task-card-header">
         <span className="priority-badge">{task.priority}</span>
         <div className="task-actions">
-          <button onClick={onEditTask} className="icon-btn edit" title="Edit Task">
+          <button onClick={onEditTask} className="icon-btn edit" title="Vazifani tahrirlash">
             <Edit2 size={14} />
           </button>
-          <button onClick={onDeleteTask} className="icon-btn delete" title="Delete Task">
+          <button onClick={onDeleteTask} className="icon-btn delete" title="Vazifani o'chirish">
             <Trash2 size={14} />
           </button>
         </div>
@@ -45,7 +44,7 @@ const TaskCard = ({ task, users = [], onEditTask, onDeleteTask, onUpdateTaskStat
           </div>
         )}
         {assignee && (
-          <div className="task-assignee" title={`Assigned to ${assignee.name}`}>
+          <div className="task-assignee" title={`Biriktirilgan: ${assignee.name}`}>
             <User size={12} />
             <span>{assignee.name}</span>
           </div>
@@ -54,7 +53,7 @@ const TaskCard = ({ task, users = [], onEditTask, onDeleteTask, onUpdateTaskStat
       
       <div className="task-status-controls">
         <div className="status-label">
-          <Clock size={12} /> Status
+          <Clock size={12} /> Holat
         </div>
         <select 
           className="status-select" 
