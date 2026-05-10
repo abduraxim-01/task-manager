@@ -82,8 +82,8 @@ const Navigation = ({ tasks = [] }) => {
         <button onClick={toggleTheme} className="theme-toggle" title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}>
           {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
         </button>
-        <div className="avatar">{user?.name?.charAt(0).toUpperCase()}</div>
-        <span className="user-name">{user?.name}</span>
+        <div className="avatar">{user?.username?.charAt(0).toUpperCase()}</div>
+        <span className="user-name">{user?.username}</span>
         <button onClick={logout} className="logout-btn" title="Logout">
           <LogOut size={18} />
         </button>

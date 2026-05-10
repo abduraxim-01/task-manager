@@ -34,8 +34,10 @@ export const AuthProvider = ({ children }) => {
 
       const foundUser = data && data[0];
       if (foundUser) {
-        setUser(foundUser);
-        localStorage.setItem('taskManagerUser', JSON.stringify(foundUser));
+        // map username to name for frontend compatibility
+        const userObj = { ...foundUser, name: foundUser.username };
+        setUser(userObj);
+        localStorage.setItem('taskManagerUser', JSON.stringify(userObj));
         return { success: true };
       } else {
         return { success: false, message: 'Invalid credentials' };
